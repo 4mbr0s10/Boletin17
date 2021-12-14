@@ -1,0 +1,58 @@
+package boletin17;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/**
+ *
+ * @author dam1
+ */
+public class Boletin17 {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        final int totalBoletins = 20;
+        float escrita1;
+        float escrita2;
+        float practica;
+        int boletins;
+        float notaFinal = 0f;
+
+        String resposta = "";
+
+        do {
+            System.out.println("Qué nota sacaches na primeira proba escrita? ");
+            escrita1 = Float.parseFloat(br.readLine());
+            System.out.println("Qué nota sacaches na segunda proba escrita? ");
+            escrita2 = Float.parseFloat(br.readLine());
+            System.out.println("Qué nota sacaches na proba práctica? ");
+            practica = Float.parseFloat(br.readLine());
+            System.out.println("Cantos boletíns tes entregados? ");
+            boletins = Integer.parseInt(br.readLine());
+
+            float escritaTotal = (escrita1 + escrita2) / 2;
+            int porcentajeBoletins = (boletins * 100) / totalBoletins;
+            if (porcentajeBoletins > 90) {
+                notaFinal = notaFinal + 2.0f;
+                System.out.println("Tes dous puntos pola entrega dos boletins.");
+
+            }
+            if (porcentajeBoletins >= 70 && porcentajeBoletins <= 90) {
+                notaFinal = notaFinal + 1.0f;
+                System.out.println("Tes un punto pola entrega de boletins. ");
+
+            }
+            notaFinal = (float) (notaFinal + (escritaTotal * 0.4) + (practica * 0.4));
+            System.out.println("Probas teóricas: " + (escritaTotal * 0.4) + "\n"
+                    + "Proba práctica: " + (practica * 0.4) + "\n"
+                    + "Boletins: " + porcentajeBoletins + "% \n"
+                    + "NOTA TOTAL: " + notaFinal);
+
+            System.out.println("Desexas calcular outra nota? Si/Non");
+            resposta = br.readLine();
+        } while (resposta.equalsIgnoreCase("Si"));
+    }
+
+}
